@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دعوة زفاف</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: #faf8f4;
+      color: #4a433d;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .screen {
+      min-height: 100vh;
+      padding: 28px 18px;
+      position: relative;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(167,181,158,.25), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(201,168,106,.18), transparent 35%),
+        #faf8f4;
+    }
+
+    .leaf-shadow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 20%, rgba(120,135,105,.08) 50%, transparent 75%);
+      animation: moveShadow 9s ease-in-out infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes moveShadow {
+      from { transform: translateX(-30px) translateY(-20px); opacity: .5; }
+      to { transform: translateX(30px) translateY(20px); opacity: 1; }
+    }
+
+    .invite-card {
+     max-width: 430px;
+     margin: auto;
+     min-height: calc(100vh - 56px);
+     position: relative;
+     z-index: 1;
+
+     border-radius: 36px;
+     overflow: hidden;
+    }
+   
+
+    .corner-flower {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      opacity: .45;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,181,158,.35), transparent 65%);
+    }
+
+    .corner-flower.top {
+      top: -45px;
+      right: -45px;
+    }
+
+    .corner-flower.bottom {
+      bottom: -45px;
+      left: -45px;
+    }
+
+   .hero {
+   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 34px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: .8s ease;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("ii.png");
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+  filter: blur(2px);
+  transform: scale(1.05);
+  z-index: -2;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 248, 244, .35);
+  z-index: -1;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+    .monogram {
+      font-family: "Amiri", serif;
+      font-size: 62px;
+      color: #b69255;
+      letter-spacing: 8px;
+      margin-bottom: 24px;
+    }
+
+    .names {
+      font-family: "Amiri", serif;
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      color: #70685f;
+      line-height: 1.8;
+      margin-bottom: 44px;
+    }
+
+    .open-btn {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,106,.8);
+      margin: 0 auto;
+      background: linear-gradient(145deg, #a7b59e, #7d8a70);
+      color: white;
+      font-size: 21px;
+      font-family: "Tajawal", sans-serif;
+      box-shadow: 0 18px 35px rgba(80,90,70,.25);
+      cursor: pointer;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.045); }
+    }
+
+   .content {
+  display: none;
+  animation: reveal .9s ease forwards;
+
+  min-height: 100vh;
+  padding: 550px 34px 22px;
+  position: relative;
+  overflow: visible;
+
+  background-image: url("ii.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+.content::after {
+  content: "";
+  display: block;
+  height: 350px;
+}
+.content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("ii.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.petals {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.petals span {
+  position: absolute;
+  top: -80px;
+  width: 24px;
+  height: 24px;
+  opacity: .95;
+  animation: petalFall linear infinite;
+
+  background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16 3C9 8 5 14 7 21c2 7 11 8 16 3 5-5 3-14-7-21Z' fill='%23f3b8b8'/%3E%3Cpath d='M16 5c-1 8-2 14-7 20' stroke='%23d98585' stroke-width='1.4' fill='none' opacity='.55'/%3E%3Cpath d='M15 8c5 4 8 8 8 13' stroke='%23ffffff' stroke-width='1' fill='none' opacity='.45'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.petals span:nth-child(1) { left: 3%; animation-duration: 9s; animation-delay: 0s; }
+.petals span:nth-child(2) { left: 8%; animation-duration: 12s; animation-delay: 1s; }
+.petals span:nth-child(3) { left: 13%; animation-duration: 10s; animation-delay: 2s; }
+.petals span:nth-child(4) { left: 18%; animation-duration: 14s; animation-delay: .5s; }
+.petals span:nth-child(5) { left: 23%; animation-duration: 11s; animation-delay: 3s; }
+.petals span:nth-child(6) { left: 28%; animation-duration: 13s; animation-delay: 1.5s; }
+.petals span:nth-child(7) { left: 34%; animation-duration: 10s; animation-delay: 2.5s; }
+.petals span:nth-child(8) { left: 40%; animation-duration: 15s; animation-delay: .8s; }
+.petals span:nth-child(9) { left: 46%; animation-duration: 12s; animation-delay: 3.5s; }
+.petals span:nth-child(10) { left: 52%; animation-duration: 9s; animation-delay: 1.2s; }
+.petals span:nth-child(11) { left: 58%; animation-duration: 14s; animation-delay: 2.2s; }
+.petals span:nth-child(12) { left: 64%; animation-duration: 11s; animation-delay: .3s; }
+.petals span:nth-child(13) { left: 70%; animation-duration: 13s; animation-delay: 3.2s; }
+.petals span:nth-child(14) { left: 76%; animation-duration: 10s; animation-delay: 1.8s; }
+.petals span:nth-child(15) { left: 82%; animation-duration: 15s; animation-delay: 2.8s; }
+.petals span:nth-child(16) { left: 88%; animation-duration: 12s; animation-delay: .6s; }
+.petals span:nth-child(17) { left: 94%; animation-duration: 14s; animation-delay: 3.8s; }
+.petals span:nth-child(18) { left: 98%; animation-duration: 10s; animation-delay: 1.4s; }
+
+.petals span:nth-child(19) { left: 15%; animation-duration: 8s; animation-delay: 4s; }
+.petals span:nth-child(20) { left: 35%; animation-duration: 9s; animation-delay: 4.5s; }
+.petals span:nth-child(21) { left: 55%; animation-duration: 8.5s; animation-delay: 5s; }
+.petals span:nth-child(22) { left: 75%; animation-duration: 9.5s; animation-delay: 5.5s; }
+.petals span:nth-child(23) { left: 25%; animation-duration: 10.5s; animation-delay: 6s; }
+.petals span:nth-child(24) { left: 85%; animation-duration: 8.8s; animation-delay: 6.5s; }
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-120px) translateX(0) rotate(0deg) scale(.8);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: .95;
+  }
+
+  100% {
+    transform: translateY(370vh) translateX(-45px) rotate(390deg) scale(.9);
+    opacity: .95;
+  }
+}
+
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .section {
+      margin-bottom: 26px;
+      text-align: center;
+    }
+    .section {
+      position: relative;
+      z-index: 2;
+    }
+
+    .section-title {
+      font-family: "Amiri", serif;
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: #35302b;
+    }
+
+    .date-card,
+    .countdown-card,
+    .details-card,
+    .rsvp-card {
+      background: rgba(255,255,255,.60);
+      border: 1px solid rgba(255,255,255,.9);
+      border-radius: 28px;
+      box-shadow: 0 14px 35px rgba(80,70,55,.1);
+      padding: 24px 18px;
+    }
+
+    .date-label {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .date-number {
+      font-size: 78px;
+      font-weight: 700;
+      color: #7d8a70;
+      line-height: 1;
+    }
+
+    .date-day {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+
+    .date-time {
+      font-size: 20px;
+      color: #70685f;
+    }
+
+    .calendar-btn {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+
+     margin-top: 18px;
+     min-width: 145px;
+     height: 44px;
+     padding: 0 18px;
+
+     border: 0;
+     border-radius: 999px;
+     background: white;
+     color: #8b734a;
+     font-size: 16px;
+     text-decoration: none;
+
+     box-shadow: 0 8px 25px rgba(80,70,55,.08);
+    }
+
+    .calendar-btn,
+.map-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.calendar-btn:active,
+.map-btn:active {
+  transform: scale(.94);
+  box-shadow: 0 4px 14px rgba(80,70,55,.18);
+}
+
+.calendar-btn::after,
+.map-btn::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(201,168,106,.35);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+}
+
+.calendar-btn:active::after,
+.map-btn:active::after {
+  animation: clickWave .45s ease;
+}
+
+.calendar-btn:hover,
+.map-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(80,70,55,.16);
+}
+
+@keyframes clickWave {
+  from {
+    transform: scale(0);
+    opacity: .8;
+    inset: 50%;
+  }
+  to {
+    transform: scale(14);
+    opacity: 0;
+    inset: 50%;
+  }
+}
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: 30px;
+      color: #7d8a70;
+      margin-bottom: 5px;
+    }
+
+    .time-box span {
+      font-size: 14px;
+      color: #70685f;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .detail-item {
+      padding: 15px 8px;
+      border-left: 1px solid rgba(120,120,120,.15);
+    }
+
+    .detail-item:last-child {
+      border-left: 0;
+    }
+
+    .detail-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .detail-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .detail-text {
+      font-size: 14px;
+      color: #70685f;
+      line-height: 1.5;
+    }
+
+    .map-btn,
+    .rsvp-btn {
+      display: block;
+      width: 100%;
+      text-decoration: none;
+      border: 0;
+      border-radius: 18px;
+      padding: 15px;
+      margin-top: 12px;
+      background: #7d8a70;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    .rsvp-btn.secondary {
+      background: #c9a86a;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .gallery div {
+      height: 95px;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(167,181,158,.45), rgba(201,168,106,.25)),
+        #fff;
+    }
+    
+    .gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-top:10px;
+}
+
+.gallery img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:22px;
+    border:2px solid rgba(255,255,255,.8);
+    box-shadow:0 12px 28px rgba(0,0,0,.12);
+    transition:.35s;
+    cursor:pointer;
+}
+
+.gallery img:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+    .footer {
+  text-align: center;
+  font-family: "Amiri", serif;
+  font-size: 28px;
+  color: #8b734a;
+
+  position: relative;
+  top: 400px;
+  padding-bottom: 40px;
+}
+.music-toggle {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 50;
+
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.85);
+  color: #8b734a;
+  font-size: 22px;
+
+  box-shadow: 0 10px 24px rgba(80,70,55,.16);
+  cursor: pointer;
+}
+
+.music-toggle.is-off {
+  opacity: .55;
+}
+
+    @media (max-width: 380px) {
+      .names { font-size: 36px; }
+      .date-number { font-size: 66px; }
+      .invite-card { border-radius: 28px; }
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="weddingMusic" src="Video Project 7.m4a" loop></audio>
+  <div class="leaf-shadow"></div>
+
+  <main class="screen">
+    <div class="invite-card">
+      <div class="corner-flower top"></div>
+      <div class="corner-flower bottom"></div>
+
+      <section class="hero" id="hero">
+        
+        <h1 class="names">عمرو & سارة</h1>
+        <p class="subtitle">
+          بكل الحب والفرح<br />
+          ندعوكم لحضور حفل زفافنا
+        </p>
+        <button class="open-btn" id="openBtn">فتح<br />الدعوة</button>
+      </section>
+
+      <section class="content" id="content">
+        <button class="music-toggle" id="musicToggle">♫</button>
+        <div class="petals">
+         <span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span>
+         <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="section">
+          <h2 class="section-title">يوم الزفاف</h2>
+          <div class="monogram">
+            <span class="flower-stroke"></span>
+            <span class="shine"></span>
+          </div>
+          <div class="date-card">
+            <div class="date-label">يوليو</div>
+            <div class="date-number">1</div>
+            <div class="date-day">الأربعاء</div>
+            <div class="date-time">PM 10:00</div>
+            <a class="calendar-btn" target="_blank"
+   href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=حفل زفاف عمرو ومريم&dates=20260701T190000Z/20260701T220000Z&details=ندعوكم لحضور حفل زفاف عمرو ومريم&location=قاعة ناردين - الرياض">
+  إضافة إلى التقويم
+</a>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">الوقت المتبقي</h2>
+          <div class="countdown-card">
+            <div class="countdown-grid">
+              <div class="time-box">
+                <strong id="days">00</strong>
+                <span>يوم</span>
+              </div>
+              <div class="time-box">
+                <strong id="hours">00</strong>
+                <span>ساعة</span>
+              </div>
+              <div class="time-box">
+                <strong id="minutes">00</strong>
+                <span>دقيقة</span>
+              </div>
+              <div class="time-box">
+                <strong id="seconds">00</strong>
+                <span>ثانية</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">تفاصيل الحفل</h2>
+          <div class="details-card">
+            <div class="details-grid">
+              <div class="detail-item">
+                <div class="detail-icon">📍</div>
+                <div class="detail-title">المكان</div>
+                <div class="detail-text">قاعة ناردين<br />الرياض</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">📅</div>
+                <div class="detail-title">التاريخ</div>
+                <div class="detail-text">1 يوليو<br />2026</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-icon">🕘</div>
+                <div class="detail-title">الوقت</div>
+                <div class="detail-text">10:00<br />مساءً</div>
+              </div>
+            </div>
+
+            <a class="map-btn" href="https://maps.google.com" target="_blank">
+              فتح الموقع على الخريطة
+            </a>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title"> احنا 😂</h2>
+          <div class="gallery">
+            
+        <img src="kho.png" alt="الخطوبة">
+
+        <img src="ka.png" alt="كتب الكتاب">
+          </div>
+        </div>
+
+        
+       <!-- <div class="section">
+          <h2 class="section-title">تأكيد الحضور</h2>
+          <div class="rsvp-card">
+            <button class="rsvp-btn">سأحضر بإذن الله</button>
+            <button class="rsvp-btn secondary">لن أستطيع الحضور</button>
+          </div>
+        </div>-->
+
+        <div class="footer"> عمرو & سارة </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const openBtn = document.getElementById("openBtn");
+    const hero = document.getElementById("hero");
+    const content = document.getElementById("content");
+
+    // Music toggle functionality
+    const weddingMusic = document.getElementById("weddingMusic");
+    const musicToggle = document.getElementById("musicToggle");
+
+    openBtn.addEventListener("click", () => {
+     weddingMusic.volume = 0.45;
+     weddingMusic.play();
+
+     hero.style.opacity = "0";
+     hero.style.transform = "scale(1.04)";
+
+      setTimeout(() => {
+       hero.style.display = "none";
+       content.style.display = "block";
+      }, 650);
+    });
+
+    musicToggle.addEventListener("click", () => {
+     if (weddingMusic.paused) {
+       weddingMusic.play();
+       musicToggle.textContent = "♫";
+       musicToggle.classList.remove("is-off");
+      } else {
+       weddingMusic.pause();
+       musicToggle.textContent = "♪";
+       musicToggle.classList.add("is-off");
+      }
+   });
+
+    const weddingDate = new Date("2026-07-01T22:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+  // Add to Calendar functionality
+    const addCalendarBtn = document.getElementById("addCalendarBtn");
+
+addCalendarBtn.addEventListener("click", () => {
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding Invitation//AR
+BEGIN:VEVENT
+UID:wedding-amr-mariam-2026@example.com
+DTSTAMP:20260629T000000Z
+DTSTART:20260701T190000Z
+DTEND:20260701T220000Z
+SUMMARY:حفل زفاف عمرو ومريم
+DESCRIPTION:ندعوكم لحضور حفل زفاف عمرو ومريم
+LOCATION:قاعة ناردين - الرياض
+END:VEVENT
+END:VCALENDAR`;
+
+  const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "wedding-invitation.ics";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  URL.revokeObjectURL(url);
+});
+  </script>
+</body>
+</html>
